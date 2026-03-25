@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAE - Centro de Apoio ao Empreendedor</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="16" fill="white" fill-opacity="0.2"/>
+          <path d="M8 20 Q16 8 24 20" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <circle cx="16" cy="10" r="3" fill="white"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-title">CAE</span>
+        <span class="logo-subtitle">Centro de Apoio ao<br/>Empreendedor</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-page="dashboard">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="nav-item" data-page="empreendedores">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>Empreendedores</span>
+      </a>
+      <a href="#" class="nav-item" data-page="atendimentos">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+          <rect x="9" y="3" width="6" height="4" rx="1"/>
+          <line x1="9" y1="12" x2="15" y2="12"/>
+          <line x1="9" y1="16" x2="13" y2="16"/>
+        </svg>
+        <span>Atendimentos</span>
+      </a>
+      <a href="#" class="nav-item" data-page="consultores">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span>Consultores</span>
+      </a>
+      <a href="#" class="nav-item" data-page="agenda">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>Agenda</span>
+      </a>
+      <a href="#" class="nav-item" data-page="relatorios">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        <span>Relatórios</span>
+      </a>
+      <a href="#" class="nav-item" data-page="configuracoes">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+        <span>Configurações</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-wrapper">
+
+    <!-- HEADER -->
+    <header class="header">
+      <button class="menu-toggle" id="menuToggle">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="header-actions">
+        <button class="header-btn" id="notifBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span>Notificações</span>
+          <span class="badge">3</span>
+        </button>
+        <button class="header-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <span>Relatórios</span>
+        </button>
+        <div class="user-menu" id="userMenu">
+          <button class="user-btn" id="userBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span>Bem-vindo, João</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+          <div class="user-dropdown" id="userDropdown">
+            <a href="#">Meu Perfil</a>
+            <a href="#">Configurações</a>
+            <a href="#" class="logout">Sair</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- NOTIFICATION PANEL -->
+    <div class="notif-panel" id="notifPanel">
+      <div class="notif-header">
+        <h3>Notificações</h3>
+        <button id="closeNotif">&times;</button>
+      </div>
+      <div class="notif-list">
+        <div class="notif-item unread">
+          <div class="notif-dot"></div>
+          <div>
+            <p><strong>Novo atendimento</strong> agendado para amanhã</p>
+            <span>há 10 minutos</span>
+          </div>
+        </div>
+        <div class="notif-item unread">
+          <div class="notif-dot"></div>
+          <div>
+            <p><strong>Carlos Silva</strong> confirmou presença</p>
+            <span>há 30 minutos</span>
+          </div>
+        </div>
+        <div class="notif-item unread">
+          <div class="notif-dot"></div>
+          <div>
+            <p>Relatório mensal disponível para download</p>
+            <span>há 2 horas</span>
+          </div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot read"></div>
+          <div>
+            <p>Sistema atualizado com sucesso</p>
+            <span>ontem</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <main class="content" id="pageContent">
+
+      <!-- DASHBOARD PAGE -->
+      <div class="page active" id="page-dashboard">
+
+        <!-- HERO BANNER -->
+        <section class="hero-banner">
+          <div class="hero-text">
+            <h1>Bem-vindo ao Sistema CAE</h1>
+            <p>Gerencie atendimentos de forma rápida e eficiente</p>
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="openModal('modalCadastro')">Novo cadastro</button>
+              <button class="btn-secondary" onclick="openModal('modalAtendimento')">Registrar Atendimento</button>
+            </div>
+          </div>
+          <div class="hero-illustration">
+            <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" width="320" height="200">
+              <!-- Background shapes -->
+              <ellipse cx="160" cy="180" rx="130" ry="20" fill="#c8d8f0" opacity="0.4"/>
+              <!-- Desk -->
+              <rect x="60" y="145" width="200" height="10" rx="3" fill="#b0c4de"/>
+              <rect x="80" y="155" width="8" height="30" rx="2" fill="#9ab0cc"/>
+              <rect x="232" y="155" width="8" height="30" rx="2" fill="#9ab0cc"/>
+              <!-- Laptop -->
+              <rect x="100" y="110" width="90" height="55" rx="4" fill="#2c5282"/>
+              <rect x="104" y="114" width="82" height="47" rx="2" fill="#4a90d9"/>
+              <!-- Screen content lines -->
+              <rect x="110" y="120" width="50" height="4" rx="2" fill="white" opacity="0.7"/>
+              <rect x="110" y="128" width="35" height="3" rx="2" fill="white" opacity="0.5"/>
+              <rect x="110" y="135" width="42" height="3" rx="2" fill="white" opacity="0.5"/>
+              <rect x="110" y="142" width="28" height="3" rx="2" fill="white" opacity="0.5"/>
+              <!-- Chart bar on screen -->
+              <rect x="162" y="138" width="6" height="10" rx="1" fill="#f6ad55"/>
+              <rect x="170" y="132" width="6" height="16" rx="1" fill="#68d391"/>
+              <rect x="178" y="126" width="6" height="22" rx="1" fill="#f6ad55"/>
+              <!-- Laptop base -->
+              <rect x="90" y="165" width="110" height="6" rx="3" fill="#2c5282"/>
+              <!-- Woman character -->
+              <circle cx="115" cy="80" r="18" fill="#f4c5a0"/>
+              <rect x="100" y="96" width="30" height="50" rx="8" fill="#ffffff"/>
+              <rect x="100" y="96" width="30" height="20" rx="4" fill="#e8f0fe"/>
+              <!-- Hair -->
+              <path d="M97 78 Q115 55 133 78 Q130 65 115 62 Q100 65 97 78Z" fill="#2d1b00"/>
+              <path d="M97 78 Q90 90 95 105" stroke="#2d1b00" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <!-- Arms -->
+              <path d="M100 110 Q85 125 95 140" stroke="#f4c5a0" stroke-width="8" fill="none" stroke-linecap="round"/>
+              <path d="M130 110 Q145 125 135 140" stroke="#f4c5a0" stroke-width="8" fill="none" stroke-linecap="round"/>
+              <!-- Man character -->
+              <circle cx="210" cy="75" r="18" fill="#f4c5a0"/>
+              <rect x="195" y="91" width="30" height="50" rx="8" fill="#3b82f6"/>
+              <!-- Hair man -->
+              <path d="M193 73 Q210 52 227 73 Q224 60 210 57 Q196 60 193 73Z" fill="#1a0a00"/>
+              <!-- Arms man -->
+              <path d="M195 105 Q180 120 190 135" stroke="#f4c5a0" stroke-width="8" fill="none" stroke-linecap="round"/>
+              <path d="M225 105 Q240 115 235 130" stroke="#f4c5a0" stroke-width="8" fill="none" stroke-linecap="round"/>
+              <!-- Tablet in man's hand -->
+              <rect x="228" y="118" width="22" height="28" rx="3" fill="#2c5282"/>
+              <rect x="230" y="120" width="18" height="24" rx="2" fill="#60a5fa"/>
+              <!-- Chat bubble -->
+              <rect x="220" y="45" width="60" height="28" rx="8" fill="white" opacity="0.9"/>
+              <path d="M230 73 L225 80 L240 73Z" fill="white" opacity="0.9"/>
+              <rect x="226" y="52" width="40" height="4" rx="2" fill="#3b82f6" opacity="0.6"/>
+              <rect x="226" y="59" width="28" height="4" rx="2" fill="#3b82f6" opacity="0.4"/>
+              <!-- Floating elements -->
+              <circle cx="75" cy="60" r="8" fill="#fbbf24" opacity="0.7"/>
+              <circle cx="265" cy="55" r="5" fill="#34d399" opacity="0.7"/>
+              <circle cx="280" cy="90" r="4" fill="#f87171" opacity="0.6"/>
+            </svg>
+          </div>
+        </section>
+
+        <!-- METRICS CARDS -->
+        <section class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-label">Atendimentos hoje</div>
+            <div class="metric-value" data-target="12">0</div>
+            <div class="metric-sub">Agendados</div>
+            <div class="metric-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" width="14" height="14">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Total de empreendedores</div>
+            <div class="metric-value" data-target="350">0</div>
+            <div class="metric-sub">Cadastrados</div>
+            <div class="metric-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" width="14" height="14">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Serviços realizados</div>
+            <div class="metric-value" data-target="87">0</div>
+            <div class="metric-sub">Este mês</div>
+            <div class="metric-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" width="14" height="14">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Consultores ativos</div>
+            <div class="metric-value" data-target="9">0</div>
+            <div class="metric-sub">consultores</div>
+            <div class="metric-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" width="14" height="14">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Total de empreendedores</div>
+            <div class="metric-value" data-target="8">0</div>
+            <div class="metric-sub">Disponíveis</div>
+            <div class="metric-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" width="14" height="14">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- TABLES SECTION -->
+        <section class="tables-section">
+          <!-- Recent Attendances -->
+          <div class="table-card">
+            <div class="card-header">
+              <h3>Histórico de atendimentos recentes</h3>
+              <div class="card-header-actions">
+                <button class="btn-link">Ver Todos</button>
+                <button class="btn-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Atendimentos</th>
+                  <th>Data</th>
+                  <th>Serviço</th>
+                  <th>Servidores</th>
+                </tr>
+              </thead>
+              <tbody id="atendimentosTableBody">
+                <tr>
+                  <td>Carlos Silva</td>
+                  <td>25/04/2024</td>
+                  <td>Consultor Financeiro</td>
+                  <td>Ana Pereira</td>
+                </tr>
+                <tr>
+                  <td>Mariana Costa</td>
+                  <td>24/04/2024</td>
+                  <td>Plano de Marketing</td>
+                  <td>Luiz Souza</td>
+                </tr>
+                <tr>
+                  <td>Roberto Lima</td>
+                  <td>23/04/2024</td>
+                  <td>Curso de Gestor</td>
+                  <td>Fernanda Melo</td>
+                </tr>
+                <tr>
+                  <td>Patrícia Alves</td>
+                  <td>22/04/2024</td>
+                  <td>Mentoria de Negócios</td>
+                  <td>Ana Pereira</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Upcoming Attendances -->
+          <div class="table-card">
+            <div class="card-header">
+              <h3>Próximos Atendimentos</h3>
+              <div class="card-header-actions">
+                <button class="btn-link">Ver agenda</button>
+                <button class="btn-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="schedule-list">
+              <div class="schedule-item">
+                <div class="schedule-info">
+                  <span class="schedule-name">João Mendes</span>
+                  <span class="schedule-date">26/04/2024 - 14:00</span>
+                </div>
+                <span class="schedule-service">Mentoria de Negócios</span>
+              </div>
+              <div class="schedule-item">
+                <div class="schedule-info">
+                  <span class="schedule-name">Lucia Ferliare</span>
+                  <span class="schedule-date">27/04/2024 - 10:30</span>
+                </div>
+                <span class="schedule-service">Treinamento de Vendas</span>
+              </div>
+              <div class="schedule-item">
+                <div class="schedule-info">
+                  <span class="schedule-name">Paulo Rocha</span>
+                  <span class="schedule-date">27/04/2024 - 15:00</span>
+                </div>
+                <span class="schedule-service">Consultor Jurídico</span>
+              </div>
+              <div class="schedule-item">
+                <div class="schedule-info">
+                  <span class="schedule-name">Sandra Moura</span>
+                  <span class="schedule-date">28/04/2024 - 09:00</span>
+                </div>
+                <span class="schedule-service">Plano de Marketing</span>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn-link">Ver agenda
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- REPORTS SECTION -->
+        <section class="reports-section">
+          <h2>Relatórios e indicadores</h2>
+          <div class="reports-grid">
+            <!-- Bar Chart -->
+            <div class="report-card">
+              <h4>Atendimentos mensais</h4>
+              <div class="chart-container">
+                <canvas id="barChart"></canvas>
+              </div>
+            </div>
+            <!-- Pie Chart -->
+            <div class="report-card">
+              <h4>Serviços mais solicitados</h4>
+              <div class="chart-pie-wrapper">
+                <div class="chart-container pie-container">
+                  <canvas id="pieChart"></canvas>
+                </div>
+                <div class="pie-legend">
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background:#1e4d8c"></span>
+                    <span>consultoria</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background:#2ecc71"></span>
+                    <span>cursos</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background:#e67e22"></span>
+                    <span>outros</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Consultant Performance -->
+            <div class="report-card">
+              <h4>Desempenho dos Consultores</h4>
+              <div class="performance-list">
+                <div class="performance-item">
+                  <span class="perf-name">Ana Pereira</span>
+                  <div class="perf-bar-wrap">
+                    <div class="perf-bar" style="width: 80%"></div>
+                  </div>
+                  <span class="perf-pct">80%</span>
+                </div>
+                <div class="performance-item">
+                  <span class="perf-name">Luiz Souza</span>
+                  <div class="perf-bar-wrap">
+                    <div class="perf-bar" style="width: 65%"></div>
+                  </div>
+                  <span class="perf-pct">65%</span>
+                </div>
+                <div class="performance-item">
+                  <span class="perf-name">Fernanda Melo</span>
+                  <div class="perf-bar-wrap">
+                    <div class="perf-bar" style="width: 72%"></div>
+                  </div>
+                  <span class="perf-pct">72%</span>
+                </div>
+                <div class="performance-item">
+                  <span class="perf-name">Ricardo Nunes</span>
+                  <div class="perf-bar-wrap">
+                    <div class="perf-bar" style="width: 55%"></div>
+                  </div>
+                  <span class="perf-pct">55%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- end page-dashboard -->
+
+      <!-- EMPREENDEDORES PAGE -->
+      <div class="page" id="page-empreendedores">
+        <div class="page-header">
+          <h2>Empreendedores</h2>
+          <button class="btn-primary" onclick="openModal('modalCadastro')">+ Novo Empreendedor</button>
+        </div>
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" placeholder="Buscar empreendedor..." id="searchEmp" oninput="filterTable()" />
+        </div>
+        <div class="table-card full-width">
+          <table class="data-table" id="empTable">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>CPF/CNPJ</th>
+                <th>Segmento</th>
+                <th>Telefone</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Carlos Silva</td>
+                <td>123.456.789-00</td>
+                <td>Comércio</td>
+                <td>(11) 99999-1111</td>
+                <td><span class="status-badge active">Ativo</span></td>
+                <td><button class="btn-sm" onclick="openModal('modalCadastro')">Editar</button></td>
+              </tr>
+              <tr>
+                <td>Mariana Costa</td>
+                <td>987.654.321-00</td>
+                <td>Serviços</td>
+                <td>(11) 99999-2222</td>
+                <td><span class="status-badge active">Ativo</span></td>
+                <td><button class="btn-sm" onclick="openModal('modalCadastro')">Editar</button></td>
+              </tr>
+              <tr>
+                <td>Roberto Lima</td>
+                <td>456.789.123-00</td>
+                <td>Indústria</td>
+                <td>(11) 99999-3333</td>
+                <td><span class="status-badge inactive">Inativo</span></td>
+                <td><button class="btn-sm" onclick="openModal('modalCadastro')">Editar</button></td>
+              </tr>
+              <tr>
+                <td>Patrícia Alves</td>
+                <td>321.654.987-00</td>
+                <td>Tecnologia</td>
+                <td>(11) 99999-4444</td>
+                <td><span class="status-badge active">Ativo</span></td>
+                <td><button class="btn-sm" onclick="openModal('modalCadastro')">Editar</button></td>
+              </tr>
+              <tr>
+                <td>Fernando Dias</td>
+                <td>654.321.098-00</td>
+                <td>Alimentação</td>
+                <td>(11) 99999-5555</td>
+                <td><span class="status-badge active">Ativo</span></td>
+                <td><button class="btn-sm" onclick="openModal('modalCadastro')">Editar</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ATENDIMENTOS PAGE -->
+      <div class="page" id="page-atendimentos">
+        <div class="page-header">
+          <h2>Atendimentos</h2>
+          <button class="btn-primary" onclick="openModal('modalAtendimento')">+ Registrar Atendimento</button>
+        </div>
+        <div class="filter-row">
+          <select class="filter-select">
+            <option>Todos os status</option>
+            <option>Agendado</option>
+            <option>Realizado</option>
+            <option>Cancelado</option>
+          </select>
+          <select class="filter-select">
+            <option>Todos os serviços</option>
+            <option>Consultoria Financeira</option>
+            <option>Plano de Marketing</option>
+            <option>Mentoria de Negócios</option>
+            <option>Curso de Gestor</option>
+          </select>
+          <input type="date" class="filter-select" />
+        </div>
+        <div class="table-card full-width">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Empreendedor</th>
+                <th>Data</th>
+                <th>Serviço</th>
+                <th>Consultor</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Carlos Silva</td>
+                <td>25/04/2024</td>
+                <td>Consultor Financeiro</td>
+                <td>Ana Pereira</td>
+                <td><span class="status-badge done">Realizado</span></td>
+                <td><button class="btn-sm">Ver</button></td>
+              </tr>
+              <tr>
+                <td>Mariana Costa</td>
+                <td>24/04/2024</td>
+                <td>Plano de Marketing</td>
+                <td>Luiz Souza</td>
+                <td><span class="status-badge done">Realizado</span></td>
+                <td><button class="btn-sm">Ver</button></td>
+              </tr>
+              <tr>
+                <td>Roberto Lima</td>
+                <td>23/04/2024</td>
+                <td>Curso de Gestor</td>
+                <td>Fernanda Melo</td>
+                <td><span class="status-badge done">Realizado</span></td>
+                <td><button class="btn-sm">Ver</button></td>
+              </tr>
+              <tr>
+                <td>João Mendes</td>
+                <td>26/04/2024</td>
+                <td>Mentoria de Negócios</td>
+                <td>Ana Pereira</td>
+                <td><span class="status-badge scheduled">Agendado</span></td>
+                <td><button class="btn-sm">Ver</button></td>
+              </tr>
+              <tr>
+                <td>Lucia Ferliare</td>
+                <td>27/04/2024</td>
+                <td>Treinamento de Vendas</td>
+                <td>Luiz Souza</td>
+                <td><span class="status-badge scheduled">Agendado</span></td>
+                <td><button class="btn-sm">Ver</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CONSULTORES PAGE -->
+      <div class="page" id="page-consultores">
+        <div class="page-header">
+          <h2>Consultores</h2>
+          <button class="btn-primary">+ Novo Consultor</button>
+        </div>
+        <div class="consultores-grid">
+          <div class="consultor-card">
+            <div class="consultor-avatar">AP</div>
+            <div class="consultor-info">
+              <h4>Ana Pereira</h4>
+              <p>Consultoria Financeira</p>
+              <span class="status-badge active">Disponível</span>
+            </div>
+            <div class="consultor-stats">
+              <div><strong>24</strong><span>Atendimentos</span></div>
+              <div><strong>80%</strong><span>Desempenho</span></div>
+            </div>
+          </div>
+          <div class="consultor-card">
+            <div class="consultor-avatar ls">LS</div>
+            <div class="consultor-info">
+              <h4>Luiz Souza</h4>
+              <p>Marketing e Vendas</p>
+              <span class="status-badge active">Disponível</span>
+            </div>
+            <div class="consultor-stats">
+              <div><strong>18</strong><span>Atendimentos</span></div>
+              <div><strong>65%</strong><span>Desempenho</span></div>
+            </div>
+          </div>
+          <div class="consultor-card">
+            <div class="consultor-avatar fm">FM</div>
+            <div class="consultor-info">
+              <h4>Fernanda Melo</h4>
+              <p>Gestão Empresarial</p>
+              <span class="status-badge inactive">Ocupada</span>
+            </div>
+            <div class="consultor-stats">
+              <div><strong>21</strong><span>Atendimentos</span></div>
+              <div><strong>72%</strong><span>Desempenho</span></div>
+            </div>
+          </div>
+          <div class="consultor-card">
+            <div class="consultor-avatar rn">RN</div>
+            <div class="consultor-info">
+              <h4>Ricardo Nunes</h4>
+              <p>Jurídico Empresarial</p>
+              <span class="status-badge active">Disponível</span>
+            </div>
+            <div class="consultor-stats">
+              <div><strong>15</strong><span>Atendimentos</span></div>
+              <div><strong>55%</strong><span>Desempenho</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AGENDA PAGE -->
+      <div class="page" id="page-agenda">
+        <div class="page-header">
+          <h2>Agenda</h2>
+          <button class="btn-primary" onclick="openModal('modalAtendimento')">+ Novo Agendamento</button>
+        </div>
+        <div class="agenda-container">
+          <div class="agenda-header">
+            <button class="btn-icon" id="prevMonth">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+            <h3 id="currentMonthYear">Abril 2024</h3>
+            <button class="btn-icon" id="nextMonth">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+          </div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+          <div class="agenda-events">
+            <h4>Agendamentos do dia selecionado</h4>
+            <div id="dayEvents">
+              <p class="no-events">Selecione um dia para ver os agendamentos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RELATORIOS PAGE -->
+      <div class="page" id="page-relatorios">
+        <div class="page-header">
+          <h2>Relatórios</h2>
+          <button class="btn-primary">Exportar PDF</button>
+        </div>
+        <div class="reports-grid full">
+          <div class="report-card large">
+            <h4>Atendimentos por mês (2024)</h4>
+            <div class="chart-container tall">
+              <canvas id="barChartFull"></canvas>
+            </div>
+          </div>
+          <div class="report-card">
+            <h4>Serviços mais solicitados</h4>
+            <div class="chart-pie-wrapper">
+              <div class="chart-container pie-container">
+                <canvas id="pieChartFull"></canvas>
+              </div>
+              <div class="pie-legend">
+                <div class="legend-item"><span class="legend-dot" style="background:#1e4d8c"></span><span>Consultoria (45%)</span></div>
+                <div class="legend-item"><span class="legend-dot" style="background:#2ecc71"></span><span>Cursos (35%)</span></div>
+                <div class="legend-item"><span class="legend-dot" style="background:#e67e22"></span><span>Outros (20%)</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="report-card">
+            <h4>Desempenho dos Consultores</h4>
+            <div class="performance-list">
+              <div class="performance-item">
+                <span class="perf-name">Ana Pereira</span>
+                <div class="perf-bar-wrap"><div class="perf-bar" style="width:80%"></div></div>
+                <span class="perf-pct">80%</span>
+              </div>
+              <div class="performance-item">
+                <span class="perf-name">Luiz Souza</span>
+                <div class="perf-bar-wrap"><div class="perf-bar" style="width:65%"></div></div>
+                <span class="perf-pct">65%</span>
+              </div>
+              <div class="performance-item">
+                <span class="perf-name">Fernanda Melo</span>
+                <div class="perf-bar-wrap"><div class="perf-bar" style="width:72%"></div></div>
+                <span class="perf-pct">72%</span>
+              </div>
+              <div class="performance-item">
+                <span class="perf-name">Ricardo Nunes</span>
+                <div class="perf-bar-wrap"><div class="perf-bar" style="width:55%"></div></div>
+                <span class="perf-pct">55%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONFIGURACOES PAGE -->
+      <div class="page" id="page-configuracoes">
+        <div class="page-header">
+          <h2>Configurações</h2>
+        </div>
+        <div class="config-grid">
+          <div class="config-section">
+            <h3>Perfil do Usuário</h3>
+            <div class="form-group">
+              <label>Nome completo</label>
+              <input type="text" value="João da Silva" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" value="joao.silva@cae.gov.br" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Cargo</label>
+              <input type="text" value="Gestor CAE" class="form-input" />
+            </div>
+            <button class="btn-primary">Salvar alterações</button>
+          </div>
+          <div class="config-section">
+            <h3>Notificações</h3>
+            <div class="toggle-item">
+              <span>Novos agendamentos</span>
+              <label class="toggle"><input type="checkbox" checked /><span class="slider"></span></label>
+            </div>
+            <div class="toggle-item">
+              <span>Confirmações de presença</span>
+              <label class="toggle"><input type="checkbox" checked /><span class="slider"></span></label>
+            </div>
+            <div class="toggle-item">
+              <span>Relatórios semanais</span>
+              <label class="toggle"><input type="checkbox" /><span class="slider"></span></label>
+            </div>
+            <div class="toggle-item">
+              <span>Alertas do sistema</span>
+              <label class="toggle"><input type="checkbox" checked /><span class="slider"></span></label>
+            </div>
+          </div>
+          <div class="config-section">
+            <h3>Segurança</h3>
+            <div class="form-group">
+              <label>Senha atual</label>
+              <input type="password" placeholder="••••••••" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Nova senha</label>
+              <input type="password" placeholder="••••••••" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Confirmar nova senha</label>
+              <input type="password" placeholder="••••••••" class="form-input" />
+            </div>
+            <button class="btn-primary">Alterar senha</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- MODAL: NOVO CADASTRO -->
+  <div class="modal-overlay" id="modalCadastro">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Novo Empreendedor</h3>
+        <button class="modal-close" onclick="closeModal('modalCadastro')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome completo *</label>
+            <input type="text" class="form-input" placeholder="Nome do empreendedor" />
+          </div>
+          <div class="form-group">
+            <label>CPF/CNPJ *</label>
+            <input type="text" class="form-input" placeholder="000.000.000-00" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" class="form-input" placeholder="email@exemplo.com" />
+          </div>
+          <div class="form-group">
+            <label>Telefone</label>
+            <input type="tel" class="form-input" placeholder="(00) 00000-0000" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Segmento</label>
+            <select class="form-input">
+              <option>Comércio</option>
+              <option>Serviços</option>
+              <option>Indústria</option>
+              <option>Tecnologia</option>
+              <option>Alimentação</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select class="form-input">
+              <option>Ativo</option>
+              <option>Inativo</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Endereço</label>
+          <input type="text" class="form-input" placeholder="Rua, número, bairro, cidade" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" onclick="closeModal('modalCadastro')">Cancelar</button>
+        <button class="btn-primary" onclick="saveAndClose('modalCadastro')">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: REGISTRAR ATENDIMENTO -->
+  <div class="modal-overlay" id="modalAtendimento">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Registrar Atendimento</h3>
+        <button class="modal-close" onclick="closeModal('modalAtendimento')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Empreendedor *</label>
+            <select class="form-input">
+              <option>Carlos Silva</option>
+              <option>Mariana Costa</option>
+              <option>Roberto Lima</option>
+              <option>Patrícia Alves</option>
+              <option>Fernando Dias</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Consultor *</label>
+            <select class="form-input">
+              <option>Ana Pereira</option>
+              <option>Luiz Souza</option>
+              <option>Fernanda Melo</option>
+              <option>Ricardo Nunes</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Serviço *</label>
+            <select class="form-input">
+              <option>Consultoria Financeira</option>
+              <option>Plano de Marketing</option>
+              <option>Mentoria de Negócios</option>
+              <option>Curso de Gestor</option>
+              <option>Treinamento de Vendas</option>
+              <option>Consultor Jurídico</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Data e Hora *</label>
+            <input type="datetime-local" class="form-input" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Observações</label>
+          <textarea class="form-input" rows="3" placeholder="Informações adicionais sobre o atendimento..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" onclick="closeModal('modalAtendimento')">Cancelar</button>
+        <button class="btn-primary" onclick="saveAndClose('modalAtendimento')">Registrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
